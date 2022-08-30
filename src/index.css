@@ -8,11 +8,11 @@ body {
 }
 * {
   font-family: "Verdana", cursive, sans-serif;
-  color: #ffffff;
+  color: #294D77;
 }
 
 body {
-  background-color: #7cc6fe;
+  background-color: #6065CF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,14 +20,17 @@ body {
 }
 
 .app {
-  background-color: #252d4a;
-  width: 450px;
+  width: 500px;
+  margin: 30px;
+}
+
+.main-app {
+  background-color: #fff;
   min-height: 200px;
   height: min-content;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-  display: flex;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
   justify-content: space-evenly;
 }
 
@@ -37,10 +40,13 @@ body {
   font-size: 24px;
   align-items: center;
   justify-content: space-evenly;
+  text-align: center;
+  transition: all .6s ease;
 }
 
 .score-section button {
   width: min-content;
+  padding: 8px;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -50,15 +56,22 @@ body {
 }
 
 .question-count {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  font-size: 24px;
+  color: #ffffff;
+  font-family: 'Roboto Flex', sans-serif;;
 }
 
-.question-count span {
+/* .question-count span {
   font-size: 28px;
-}
+} */
 
 .question-text {
-  margin-bottom: 12px;
+  margin-bottom: 36px;
+  color: #294D77;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Roboto Flex', sans-serif;
 }
 
 .timer-text {
@@ -82,15 +95,17 @@ body {
 button {
   width: 100%;
   font-size: 16px;
-  color: #ffffff;
-  background-color: #252d4a;
-  border-radius: 15px;
+  color: #7086a1;
+  background-color: #ffffff;
+  border-radius: 5px;
   display: flex;
-  padding: 5px;
+  padding: 16px;
+  margin: 8px 0px;
   justify-content: flex-start;
   align-items: center;
-  border: 5px solid #234668;
+  border: 2px solid #D0E4FE;
   cursor: pointer;
+  transition: all .4s ease;
 }
 
 .correct {
@@ -102,7 +117,9 @@ button {
 }
 
 button:hover {
-  background-color: #555e7d;
+  background-color: #FBA92E;
+  color: #ffffff;
+  border: 2px solid #FBA92E;
 }
 
 button:focus {
@@ -111,4 +128,11 @@ button:focus {
 
 button svg {
   margin-right: 5px;
+}
+
+@media only screen and (max-width: 550px) {
+  .app {
+    max-width: 500px;
+    width: auto;
+  }
 }

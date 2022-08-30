@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import JSONDATA from "./Questions.json";
+import ProgressBar from "./Components/progress-bar";
 
 export default function App() {
   const questions = JSONDATA;
@@ -7,6 +8,7 @@ export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [scoreList, setScoreList] = useState(0);
 
   const handleAnswerButtonClick = (isCorrect) => {
     if (isCorrect === true) {
@@ -21,35 +23,50 @@ export default function App() {
     }
   };
 
+  const handleResetButton = (score) => {
+    setScoreList(scoreList + score);
+    setCurrentQuestion(0);
+    setShowScore(false);
+    setScore(0);
+  };
+
   return (
     <div className="app">
-      {/* HINT: replace "false" with logic to display the 
-      score when the user has answered all the questions */}
       {showScore ? (
-        <div className="score-section">
-          <p>
-            You scored {score} out of {questions.length}
-          </p>
-          <button >Retry</button>
+        <div className="main-app">
+          <div className="score-section">
+            <p>
+              You scored {score} out of {questions.length} and your acummulated
+              score is {scoreList + score}.
+            </p>
+            <button onClick={() => handleResetButton(score)}>Retry!</button>
+          </div>
         </div>
       ) : (
         <>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{questions.length}
-            </div>
-            <div className="question-text">
-              {questions[currentQuestion].questionText}
-            </div>
+          <div className="question-count">
+            Question {currentQuestion + 1} / {questions.length}
           </div>
-          <div className="answer-section">
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button
-                onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}
-              >
-                {answerOption.answerText}
-              </button>
-            ))}
+          <div>
+            <ProgressBar length={(currentQuestion + 1)/questions.length*100} bgcolor={"#FBA92E"} completed={currentQuestion + 1} />
+          </div>
+          <div className="main-app">
+            <div className="question-section">
+              <div className="question-text">
+                {questions[currentQuestion].questionText}
+              </div>
+            </div>
+            <div className="answer-section">
+              {questions[currentQuestion].answerOptions.map((answerOption) => (
+                <button
+                  onClick={() =>
+                    handleAnswerButtonClick(answerOption.isCorrect)
+                  }
+                >
+                  {answerOption.answerText}
+                </button>
+              ))}
+            </div>
           </div>
         </>
       )}
